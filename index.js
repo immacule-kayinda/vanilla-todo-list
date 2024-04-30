@@ -1,6 +1,11 @@
 const tasksForm = document.querySelector("form")
 const tasks = document.querySelector("#tasks")
+const allTheTask = document.querySelectorAll('.task')
+const sortBy = document.querySelector("#sortBy")
 
+function displayAll(condition) {
+
+}
 
 function createElement(type, properties = {}) {
     const element = document.createElement(type);
@@ -83,4 +88,5 @@ function addTask(event) {
 
 
 tasksForm.addEventListener("submit", addTask)
+
 
