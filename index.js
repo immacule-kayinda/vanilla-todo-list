@@ -1,10 +1,25 @@
 const tasksForm = document.querySelector("form")
 const tasks = document.querySelector("#tasks")
-const allTheTask = document.querySelectorAll('.task')
 const sortBy = document.querySelector("#sortBy")
 
-function displayAll(condition) {
 
+function filteringList(event) {
+    const value = event.target.value
+    const allTheTask = Array.from(tasks.querySelectorAll('.task'))
+    if(value === "completed") {
+        filterDone(allTheTask)
+    } else {
+        allTheTask.forEach(element => {
+            element.classList.remove('hide')
+        })
+    }
+}
+
+function filterDone(array) {
+    array.forEach(element => {
+        console.log(element.className)
+        if(element.className !== "task done") element.classList.add("hide")
+    });
 }
 
 function createElement(type, properties = {}) {
@@ -21,41 +36,55 @@ function createButton(text, clickHandler) {
 }
 
 function createTask(taskName) {
+
     const taskId = crypto.randomUUID();
     const checkBoxId = `tache${taskId}`;
-
+    
     const taskCheckInput = createElement('input', {
         type: 'checkbox',
-        id: checkBoxId
+        id: checkBoxId,
+        onchange: () => {
+            changeChecked(taskId)
+        }
     });
-
+    
     const taskLabel = createElement('label', {
         htmlFor: checkBoxId,
         textContent: taskName
     });
-
+    
     const deleteBtn = createButton('Supprimer', function () {
         deleteTask(taskId)
     });
     const updateBtn = createButton('Modifier', function () {
         updateTask(taskId)
     });
-
+    
     const task = createElement('div', {
         className: 'task',
         id: taskId
     });
 
+   
+    
     task.append(taskCheckInput, taskLabel, document.createElement('br'), deleteBtn, updateBtn, document.createElement('hr'));
-
+    
     tasks.appendChild(task);
+
+}
+
+function changeChecked(taskId) {
+    const task = document.getElementById(taskId)
+    if(task.className === "task hide") task.classList.remove('hide')
+    else task.classList.add('hide')
+    task.classList.toggle("done")
 }
 
 function deleteTask(taskId) {
     const task = document.getElementById(taskId)
-
+    
     const confirmDeletion = confirm("Voulez-vous supprimer cette tache ?")
-
+    
     if (confirmDeletion) {
         task.remove();
     }
@@ -65,7 +94,7 @@ function updateTask(taskId) {
     const task = document.getElementById(taskId);
     const taskLabel = task.querySelector("label");
     const newTaskName = prompt("Enter the new task name", taskLabel.textContent);
-
+    
     if (newTaskName) {
         const taskLabel = task.querySelector("label");
         taskLabel.textContent = newTaskName;
@@ -74,19 +103,19 @@ function updateTask(taskId) {
 
 function addTask(event) {
     const data = new FormData(event.target)
-
+    
     const {task} = Object.fromEntries(data.entries())
-
+    
     if (task) {
         createTask(task)
         event.target.reset()
     }
-
-
+    
+    
     event.preventDefault();
 }
 
 
 tasksForm.addEventListener("submit", addTask)
 
-
+sortBy.addEventListener("change", filteringList)

@@ -6,26 +6,30 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Liste des tâches</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Liste des taches</h1>
+    <main>
+        <h1>Liste des taches</h1>
 
-    <div>
-        <form>
-            <div>
-                <input name="task" id="task" placeholder="Ajouter une nouvelle tache">
-            </div>
-            <div>
-                <button type="submit">Ajouter</button>
-            </div>
-        </form>
-    </div>
-    <select name="" id="sortBy">
-        <option value="All">All</option>
-        <option value="Completed">Completed</option>
-    </select>
-    <div id="tasks">
-    </div>
+        <div>
+            <form>
+                <div>
+                    <input name="task" id="task" placeholder="Ajouter une nouvelle tache">
+                </div>
+                <div>
+                    <button type="submit">Ajouter</button>
+                </div>
+            </form>
+        </div>
+        <select name="" id="sortBy">
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+        </select>
+        <div id="tasks">
+        </div>
+    </main>
+    
     <script src="index.js"></script>
 </body>
 </html>
