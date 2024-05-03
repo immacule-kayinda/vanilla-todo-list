@@ -12,20 +12,22 @@
     <main>
         <h1>Liste des taches</h1>
 
-        <div>
+    <div class="form">
             <form>
                 <div>
                     <input name="task" id="task" placeholder="Ajouter une nouvelle tache">
                 </div>
-                <div>
-                    <button type="submit">Ajouter</button>
+                <div class="main__form__select">
+                    <select name="" id="sortBy">
+                        <option value="all">All</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    <div>
+                        <button type="submit">Ajouter</button>
+                    </div>
                 </div>
             </form>
         </div>
-        <select name="" id="sortBy">
-            <option value="all">All</option>
-            <option value="completed">Completed</option>
-        </select>
         <div id="tasks">
         </div>
     </main>

@@ -105,7 +105,7 @@ function addTask(event) {
     const data = new FormData(event.target)
     
     const {task} = Object.fromEntries(data.entries())
-    
+    console.log(Object.fromEntries(data.entries()))
     if (task) {
         createTask(task)
         event.target.reset()
